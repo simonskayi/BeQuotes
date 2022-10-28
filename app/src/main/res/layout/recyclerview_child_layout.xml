@@ -38,17 +38,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:ellipsize="end"
                 android:fontFamily="sans-serif-medium"
+                android:maxLines="3"
                 android:paddingStart="8dp"
                 android:paddingLeft="8dp"
                 android:paddingEnd="8dp"
                 android:paddingRight="8dp"
-                android:text="Two things are in the world Joy Love And Crime of the Gods of The Stanus og the Joy"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/image"
-                app:layout_constraintTop_toTopOf="@+id/image" />
+                app:layout_constraintTop_toTopOf="@+id/image"
+                tools:text="Two things are in the world Joy Love And Crime of the Gods of The Stanus og the Joy" />
 
             <TextView
                 android:id="@+id/txt_aut"
@@ -58,7 +60,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="10dp"
                 android:padding="2dp"
-                android:text="-Simons Arhin"
+                tools:text="-Simons Arhin"
                 android:textSize="14sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintBottom_toBottomOf="parent"
