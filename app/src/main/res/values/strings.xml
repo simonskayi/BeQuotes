@@ -2,5 +2,5 @@
     <string name="app_name">BeQuotes</string>
     <string name="Greetings">Good Day!</string>
     <string name="quote_background">Quote image</string>
-    <string name="quote_sign">"</string>
+    <string name="quote_description">Quote image</string>
 </resources>
