@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "904699554675",
+    "project_id": "bequotes-1648c",
+    "storage_bucket": "bequotes-1648c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904699554675:android:5beb0bf1a1e6875fca7306",
+        "android_client_info": {
+          "package_name": "com.kwekboss.bequotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904699554675-2d6hj4jn8bfgkprpa1t54ldi9pv50c5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0fIwyRYxNmPlp9wmxK0gjFhjcWowSuXU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904699554675-2d6hj4jn8bfgkprpa1t54ldi9pv50c5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

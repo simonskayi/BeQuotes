@@ -22,12 +22,12 @@ class ReadQuote : AppCompatActivity() {
         //handling share intent
         shareQuote.setOnClickListener {
             val quote = intent.getStringExtra("quote")
-             Intent(Intent.ACTION_SEND).apply {
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
-                putExtra("Share this",quote)
-                val chooser = Intent.createChooser(intent,"Share Using...")
-                startActivity(chooser)
+                putExtra(Intent.EXTRA_TEXT,quote)
             }
+            val chooser = Intent.createChooser(shareIntent,"Share Using...")
+            startActivity(chooser)
         }
     }
 
