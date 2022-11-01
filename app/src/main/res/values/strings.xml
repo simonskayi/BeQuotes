@@ -3,4 +3,5 @@
     <string name="Greetings">Good Day!</string>
     <string name="quote_background">Quote image</string>
     <string name="quote_description">Quote image</string>
+    <string name="button_description">Share</string>
 </resources>
