@@ -25,9 +25,10 @@ class MainActivity : AppCompatActivity(), QuotesAdapter.QuoteInterface {
         setContentView(R.layout.activity_main)
         recyclerView = findViewById(R.id.recyclerView)
         quotesAdapter = QuotesAdapter(this)
-
         initRecyclerView()
         // get quotes from firebase
+        getQuotes()
+
         quotesAdapter.differ.submitList(getQuotes())
 
     }
