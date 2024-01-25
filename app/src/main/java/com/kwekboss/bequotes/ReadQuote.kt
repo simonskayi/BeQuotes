@@ -26,7 +26,7 @@ class ReadQuote : AppCompatActivity() {
                 type = "text/plain"
                 putExtra(Intent.EXTRA_TEXT,quote)
             }
-            val chooser = Intent.createChooser(shareIntent,"Share Using...")
+            val chooser = Intent.createChooser(shareIntent,"Share")
             startActivity(chooser)
         }
     }

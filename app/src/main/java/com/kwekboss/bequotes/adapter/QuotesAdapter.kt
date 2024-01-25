@@ -49,7 +49,7 @@ class QuotesAdapter(private val _quotesInterface:QuoteInterface): RecyclerView.A
         val mainQuote = itemView.findViewById<TextView>(R.id.txt_qoute)
         val quoteAuthor =itemView.findViewById<TextView>(R.id.txt_aut)
 
-        mainQuote.text = quotes.quotes
+        mainQuote.text = quotes.quote
         quoteAuthor.text = quotes.author
     }
     }
