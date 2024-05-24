@@ -33,9 +33,8 @@ class MainActivity : AppCompatActivity(), QuotesAdapter.QuoteInterface {
 
         showProgressBar()
 
-       //Get Quotes from firebase
+       //Get Quotes from firebase database
         getQuotes()
-
 
     }
 
