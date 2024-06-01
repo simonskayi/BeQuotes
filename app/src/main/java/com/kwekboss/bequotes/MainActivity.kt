@@ -1,13 +1,12 @@
 package com.kwekboss.bequotes
 
 import android.content.Intent
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -16,12 +15,13 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.kwekboss.bequotes.adapter.QuotesAdapter
 import com.kwekboss.bequotes.model.Quotes
+import com.kwekboss.bequotes.utils.Constants.SAVED_INSTANCE_kEY
 
 class MainActivity : AppCompatActivity(), QuotesAdapter.QuoteInterface {
     private lateinit var recyclerView: RecyclerView
     private lateinit var quotesAdapter: QuotesAdapter
     private lateinit var progressBar: ProgressBar
-
+    var quoteList: ArrayList<Quotes> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,14 +30,35 @@ class MainActivity : AppCompatActivity(), QuotesAdapter.QuoteInterface {
         quotesAdapter = QuotesAdapter(this)
 
         initRecyclerView()
-
         showProgressBar()
 
-       //Get Quotes from firebase database
-        getQuotes()
+        if (savedInstanceState == null) {
+            getQuotes()
+        }
+
+        else {
+         quoteList = savedInstanceState.getParcelableArrayList(SAVED_INSTANCE_kEY) ?: arrayListOf()
+            quotesAdapter.differ.submitList(quoteList)
+            hideProgressBar()
+        }
 
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(SAVED_INSTANCE_kEY, quoteList)
+    }
+
+    override fun onRestoreInstanceState(
+        savedInstanceState: Bundle?,
+        persistentState: PersistableBundle?
+    ) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState)
+        savedInstanceState?.let {
+            quoteList = it.getParcelableArrayList(SAVED_INSTANCE_kEY) ?: ArrayList()
+            quotesAdapter.differ.submitList(quoteList)
+        }
+    }
 
     private fun initRecyclerView() {
         recyclerView.apply {
@@ -56,9 +77,7 @@ class MainActivity : AppCompatActivity(), QuotesAdapter.QuoteInterface {
         }
     }
 
-    private fun getQuotes(): ArrayList<Quotes> {
-
-        val quotes = arrayListOf<Quotes>()
+    private fun getQuotes() {
         val database = FirebaseDatabase.getInstance().getReference("Quotes")
         database.addValueEventListener(object : ValueEventListener {
 
@@ -68,13 +87,13 @@ class MainActivity : AppCompatActivity(), QuotesAdapter.QuoteInterface {
 
                     for (quotesSnapshot in snapshot.children) {
                         val allQuotes = quotesSnapshot.getValue(Quotes::class.java)
-                        quotes.add(allQuotes!!)
+                        quoteList.add(allQuotes!!)
                     }
-                    //Shuffle Quotes
-                    quotes.shuffle()
 
-                    // get quotes from firebase
-                    quotesAdapter.differ.submitList(quotes)
+                    quoteList.shuffle()
+
+                    //display on recyclerview
+                    quotesAdapter.differ.submitList(quoteList)
                 }
                 hideProgressBar()
             }
@@ -85,14 +104,14 @@ class MainActivity : AppCompatActivity(), QuotesAdapter.QuoteInterface {
             }
 
         })
-        return quotes
+
     }
 
     private fun showProgressBar() {
         progressBar.visibility = View.VISIBLE
     }
 
-   private fun hideProgressBar() {
+    private fun hideProgressBar() {
         progressBar.visibility = View.GONE
     }
 }
